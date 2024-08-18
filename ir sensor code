@@ -1,0 +1,26 @@
+// Define the pin where the IR sensor is connected
+const int IR_SENSOR_PIN = 7;  // Digital pin 7
+const int LED_PIN = 13;       // Onboard LED pin (optional)
+
+void setup() {
+  pinMode(IR_SENSOR_PIN, INPUT); // Set the IR sensor pin as input
+  pinMode(LED_PIN, OUTPUT);      // Set the LED pin as output
+  
+  Serial.begin(9600);            // Start the Serial Monitor
+}
+
+void loop() {
+  // Read the value from the IR sensor
+  int sensorValue = digitalRead(IR_SENSOR_PIN);
+  
+  // If the sensor detects an object (LOW for active low sensors)
+  if (sensorValue == LOW) {
+    Serial.println("Object detected!");
+    digitalWrite(LED_PIN, HIGH); // Turn on LED (optional)
+  } else {
+    Serial.println("No object detected.");
+    digitalWrite(LED_PIN, LOW);  // Turn off LED (optional)
+  }
+  
+  delay(100); // Short delay for readability
+}
